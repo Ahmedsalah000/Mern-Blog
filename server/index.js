@@ -1,12 +1,12 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import express, { json } from 'express';
+import mongoose from 'mongoose';
+import { config } from 'dotenv';
 // const cloudinary = require('cloudinary').v2;
-const cors = require('cors');
+import cors from 'cors';
 
-const dbConnection = require('./config/database');
+import dbConnection from './config/database.js';
 // const { cloudinaryConfig } = require('./config/cloudinaryConfig');
-dotenv.config({ path: 'config.env' });
+config({ path: 'config.env' });
 
 // DB Connection
 dbConnection();
@@ -14,11 +14,11 @@ dbConnection();
 const app = express();
 
 app.use(cors());
-app.use(express.json());
+app.use(json());
 
 
 // Routes
-const articles = require('./routes/articles');
+import articles from './routes/articles.js';
 app.use('/api/articles', articles);
 
 const PORT = process.env.PORT || 5000;

@@ -1,11 +1,11 @@
-const express = require('express');
-const router = express.Router();
-const Article = require('../models/article');
+import { Router } from 'express';
 
+import Article from '../models/article.js';
+const router = Router();
 // Get all articles
 router.get('/', async (req, res) => {
   try {
-    const articles = await Article.find();
+    const articles = await find();
     res.json(articles);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 // Get articles by category
 router.get('/:category', async (req, res) => {
   try {
-    const articles = await Article.find({ category: req.params.category });
+    const articles = await find({ category: req.params.category });
     res.json(articles);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -39,4 +39,4 @@ router.post('/', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
