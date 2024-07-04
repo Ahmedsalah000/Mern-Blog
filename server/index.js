@@ -7,16 +7,23 @@ import postRoutes from './routes/post.route.js';
 import commentRoutes from './routes/comment.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
-import dbConnection from './config/database.js';
-dotenv.config({path:'./config.env'});
+import cors from 'cors';
+import 'colors';
+dotenv.config();
 
-dbConnection();
-
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then((conn) => {
+    console.log(`MongoDB Connected: ${conn.connection.host}`.cyan.underline);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
 const __dirname = path.resolve();
 
 const app = express();
-
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
