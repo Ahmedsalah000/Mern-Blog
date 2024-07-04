@@ -7,17 +7,11 @@ import postRoutes from './routes/post.route.js';
 import commentRoutes from './routes/comment.route.js';
 import cookieParser from 'cookie-parser';
 import path from 'path';
+import dbConnection from './config/database.js';
+dotenv.config({path:'./config.env'});
 
-dotenv.config();
+dbConnection();
 
-mongoose
-  .connect(process.env.MONGO)
-  .then(() => {
-    console.log('MongoDb is connected');
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 const __dirname = path.resolve();
 
