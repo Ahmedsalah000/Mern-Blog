@@ -12,6 +12,7 @@ import OAuth from '../components/OAuth';
 export default function SignIn() {
   const [formData, setFormData] = useState({});
   const { loading, error: errorMessage } = useSelector((state) => state.user);
+  const { token } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -26,15 +27,19 @@ export default function SignIn() {
       dispatch(signInStart());
       const res = await fetch('http://localhost:3000/api/auth/signin', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(formData),
       });
       const data = await res.json();
+      console.log(data)
       if (data.success === false) {
         dispatch(signInFailure(data.message));
       }
 
       if (res.ok) {
+        localStorage.setItem('token',token);
         dispatch(signInSuccess(data));
         navigate('/');
       }
