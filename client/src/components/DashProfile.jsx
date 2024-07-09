@@ -24,7 +24,7 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 
 export default function DashProfile() {
-  const { currentUser, error, loading } = useSelector((state) => state.user);
+  const { token,currentUser, error, loading } = useSelector((state) => state.user);
   const [imageFile, setImageFile] = useState(null);
   const [imageFileUrl, setImageFileUrl] = useState(null);
   const [imageFileUploadProgress, setImageFileUploadProgress] = useState(null);
@@ -111,8 +111,7 @@ export default function DashProfile() {
     }
     try {
       dispatch(updateStart());
-      const token = localStorage.getItem('token'); // Retrieve the JWT
-      console.log(token)
+      
       const res = await fetch(`http://localhost:3000/api/user/update/${currentUser._id}`, {
         method: 'PUT',
         headers: {
@@ -140,7 +139,6 @@ export default function DashProfile() {
     setShowModal(false);
     try {
       dispatch(deleteUserStart());
-      const token = localStorage.getItem('token'); // Retrieve the JWT
       const res = await fetch(`http://localhost:3000/api/user/delete/${currentUser._id}`, {
         method: 'DELETE',
         headers: {

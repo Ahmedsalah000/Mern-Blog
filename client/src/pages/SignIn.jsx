@@ -39,7 +39,9 @@ export default function SignIn() {
       }
 
       if (res.ok) {
-        localStorage.setItem('token',token);
+        localStorage.setItem('token', data.token);
+        
+        
         dispatch(signInSuccess(data));
         navigate('/');
       }

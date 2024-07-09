@@ -47,7 +47,7 @@ export default function FooterCom() {
                 >
                   Github
                 </Footer.Link>
-                <Footer.Link href='#'>Discord</Footer.Link>
+                <Footer.Link href='https://linkedin.com/in/ahmed-salah-1b530b182'>LinkedIn</Footer.Link>
               </Footer.LinkGroup>
             </div>
             <div>

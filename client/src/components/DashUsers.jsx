@@ -5,7 +5,7 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 
 export default function DashUsers() {
-  const { currentUser } = useSelector((state) => state.user);
+  const { token,currentUser } = useSelector((state) => state.user);
   const [users, setUsers] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -13,7 +13,11 @@ export default function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/user/getusers`);
+        const res = await fetch(`http://localhost:3000/api/user/getusers`,{
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -33,7 +37,11 @@ export default function DashUsers() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const res = await fetch(`http://localhost:3000/api/user/getusers?startIndex=${startIndex}`);
+      const res = await fetch(`http://localhost:3000/api/user/getusers?startIndex=${startIndex}`,{
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
       const data = await res.json();
       if (res.ok) {
         setUsers((prev) => [...prev, ...data.users]);
@@ -50,6 +58,10 @@ export default function DashUsers() {
     try {
         const res = await fetch(`http://localhost:3000/api/user/delete/${userIdToDelete}`, {
             method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            }
         });
         const data = await res.json();
         if (res.ok) {
@@ -65,7 +77,7 @@ export default function DashUsers() {
 
   return (
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500'>
-      {currentUser.rest.isAdmin && users.length > 0 ? (
+      {currentUser.isAdmin && users.length > 0 ? (
         <>
           <Table hoverable className='shadow-md'>
             <Table.Head>

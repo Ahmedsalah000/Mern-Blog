@@ -59,8 +59,11 @@ export const signin = async (req, res, next) => {
 
     const { password: pass, ...rest } = validUser._doc;
 
+    // console.log(token)
+
 
     res.status(200).json({ rest, token });
+
       
   } catch (error) {
     next(error);
@@ -79,6 +82,7 @@ export const google = async (req, res, next) => {
       }
       );
       const { password, ...rest } = user._doc;
+      console.log("g1",token)
       res.status(200).json({ rest, token });
     } else {
       const generatedPassword =
@@ -101,6 +105,7 @@ export const google = async (req, res, next) => {
       }
       );
       const { password, ...rest } = newUser._doc;
+      console.log("g2",token)
       res.status(200).json({ rest, token });
     }
   } catch (error) {

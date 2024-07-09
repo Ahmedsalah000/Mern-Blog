@@ -6,7 +6,7 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { set } from 'mongoose';
 
 export default function DashPosts() {
-  const { currentUser } = useSelector((state) => state.user);
+  const { token,currentUser } = useSelector((state) => state.user);
   const [userPosts, setUserPosts] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -14,7 +14,11 @@ export default function DashPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/post/getposts?userId=${currentUser._id}`);
+        const res = await fetch(`http://localhost:3000/api/post/getposts?userId=${currentUser._id}`,{
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setUserPosts(data.posts);
@@ -35,7 +39,11 @@ export default function DashPosts() {
     const startIndex = userPosts.length;
     try {
       const res = await fetch(
-        `http://localhost:3000/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`
+        `http://localhost:3000/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,{
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
       );
       const data = await res.json();
       if (res.ok) {
@@ -56,6 +64,9 @@ export default function DashPosts() {
         `http://localhost:3000/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
         {
           method: 'DELETE',
+          headers:{
+            'Authorization': `Bearer ${token}`
+          }
         }
       );
       const data = await res.json();

@@ -19,11 +19,15 @@ export default function DashboardComp() {
   const [lastMonthUsers, setLastMonthUsers] = useState(0);
   const [lastMonthPosts, setLastMonthPosts] = useState(0);
   const [lastMonthComments, setLastMonthComments] = useState(0);
-  const { currentUser } = useSelector((state) => state.user);
+  const {token, currentUser } = useSelector((state) => state.user);
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/user/getusers?limit=5');
+        const res = await fetch('http://localhost:3000/api/user/getusers?limit=5',{
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -36,7 +40,11 @@ export default function DashboardComp() {
     };
     const fetchPosts = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/post/getposts?limit=5');
+        const res = await fetch('http://localhost:3000/api/post/getposts?limit=5',{
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setPosts(data.posts);
@@ -49,7 +57,11 @@ export default function DashboardComp() {
     };
     const fetchComments = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/comment/getcomments?limit=5');
+        const res = await fetch('http://localhost:3000/api/comment/getcomments?limit=5',{
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);

@@ -5,7 +5,7 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi';
 import { FaCheck, FaTimes } from 'react-icons/fa';
 
 export default function DashComments() {
-  const { currentUser } = useSelector((state) => state.user);
+  const { token,currentUser } = useSelector((state) => state.user);
   const [comments, setComments] = useState([]);
   const [showMore, setShowMore] = useState(true);
   const [showModal, setShowModal] = useState(false);
@@ -13,7 +13,11 @@ export default function DashComments() {
   useEffect(() => {
     const fetchComments = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/comment/getcomments`);
+        const res = await fetch(`http://localhost:3000/api/comment/getcomments`, {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        });
         const data = await res.json();
         if (res.ok) {
           setComments(data.comments);
@@ -34,7 +38,11 @@ export default function DashComments() {
     const startIndex = comments.length;
     try {
       const res = await fetch(
-        `http://localhost:3000/api/comment/getcomments?startIndex=${startIndex}`
+        `http://localhost:3000/api/comment/getcomments?startIndex=${startIndex}`,{
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
       );
       const data = await res.json();
       if (res.ok) {
@@ -55,6 +63,10 @@ export default function DashComments() {
         `http://localhost:3000/api/comment/deleteComment/${commentIdToDelete}`,
         {
           method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          }
         }
       );
       const data = await res.json();
