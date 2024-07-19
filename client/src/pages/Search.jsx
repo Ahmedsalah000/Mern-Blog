@@ -136,7 +136,7 @@ export default function Search() {
               <option value='javascript'>JavaScript</option>
             </Select>
           </div>
-          <Button type='submit' outline gradientDuoTone='LimeToSky'>
+          <Button type='submit' outline gradientDuoTone='Green to Blue'>
             Apply Filters
           </Button>
         </form>
