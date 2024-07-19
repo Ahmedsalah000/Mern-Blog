@@ -64,7 +64,7 @@ export default function CreatePost() {
     e.preventDefault();
     try {
       
-      const res = await fetch('http://localhost:3000/api/post/create', {
+      const res = await fetch('https://mern-blog-kld8.vercel.app/api/post/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ export default function DashUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/user/getusers`,{
+        const res = await fetch(`https://mern-blog-kld8.vercel.app/api/user/getusers`,{
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -37,7 +37,7 @@ export default function DashUsers() {
   const handleShowMore = async () => {
     const startIndex = users.length;
     try {
-      const res = await fetch(`http://localhost:3000/api/user/getusers?startIndex=${startIndex}`,{
+      const res = await fetch(`https://mern-blog-kld8.vercel.app/api/user/getusers?startIndex=${startIndex}`,{
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -56,7 +56,7 @@ export default function DashUsers() {
 
   const handleDeleteUser = async () => {
     try {
-        const res = await fetch(`http://localhost:3000/api/user/delete/${userIdToDelete}`, {
+        const res = await fetch(`https://mern-blog-kld8.vercel.app/api/user/delete/${userIdToDelete}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

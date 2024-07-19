@@ -14,7 +14,7 @@ export default function DashPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/post/getposts?userId=${currentUser._id}`,{
+        const res = await fetch(`https://mern-blog-kld8.vercel.app/api/post/getposts?userId=${currentUser._id}`,{
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -39,7 +39,7 @@ export default function DashPosts() {
     const startIndex = userPosts.length;
     try {
       const res = await fetch(
-        `http://localhost:3000/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,{
+        `https://mern-blog-kld8.vercel.app/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`,{
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -61,7 +61,7 @@ export default function DashPosts() {
     setShowModal(false);
     try {
       const res = await fetch(
-        `http://localhost:3000/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
+        `https://mern-blog-kld8.vercel.app/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
         {
           method: 'DELETE',
           headers:{
