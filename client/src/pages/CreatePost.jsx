@@ -155,7 +155,7 @@ export default function CreatePost() {
             setFormData({ ...formData, content: value });
           }}
         />
-        <Button type='submit' gradientDuoTone='Green to Blue'>
+        <Button type='submit' gradientDuoTone='GreenToBlue'>
           Publish
         </Button>
         {publishError && (
