@@ -13,7 +13,7 @@ export default function CallToAction() {
             </p>
             <Button gradientDuoTone='purpleToPink' className='rounded-tl-xl rounded-bl-none'>
                 <a href="https://github.com/Ahmedsalah000" target='_blank' rel='noopener noreferrer'>
-                icon={BsGithub}
+                {BsGithub}
                 </a>
             </Button>
         </div>
