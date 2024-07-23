@@ -26,6 +26,7 @@ export default function CreatePost() {
 
   const navigate = useNavigate();
   const modules = {
+    syntax: true,
     toolbar: {
       container: "#toolbar",
     },
