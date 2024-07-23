@@ -147,14 +147,30 @@ export default function CreatePost() {
           />
         )}
         <ReactQuill
-          theme='snow'
-          placeholder='Write something...'
-          className='h-72 mb-12'
-          required
-          onChange={(value) => {
-            setFormData({ ...formData, content: value });
-          }}
-        />
+  theme='snow'
+  modules={{
+    toolbar: [
+    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+    ['bold', 'italic', 'underline', 'strike'],
+    ['blockquote', 'code-block'],
+    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+    [{ 'script': 'sub'}, { 'script': 'super' }],
+    [{ 'indent': '-1'}, { 'indent': '+1' }],
+    [{ 'direction': 'rtl' }],
+    [{ 'color': [] }, { 'background': [] }],
+    [{ 'font': [] }],
+    [{ 'align': [] }],
+    ['link', 'image', 'video'],
+    ['clean']
+  ]
+  }}
+  placeholder='Write something...'
+  className='h-72 mb-12'
+  required
+  onChange={(value) => {
+    setFormData({ ...formData, content: value });
+  }}
+/>
         <Button type='submit' gradientDuoTone='greenToBlue'>
           Publish
         </Button>
