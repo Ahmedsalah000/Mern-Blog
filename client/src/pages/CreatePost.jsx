@@ -1,6 +1,7 @@
 import { Alert, Button, FileInput, Select, TextInput } from 'flowbite-react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+
 import {
   getDownloadURL,
   getStorage,
@@ -13,6 +14,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import CustomToolbar from '../components/CustomToolbar';
 
 export default function CreatePost() {
   const [file, setFile] = useState(null);
@@ -23,6 +25,11 @@ export default function CreatePost() {
   const { token } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
+  const modules = {
+    toolbar: {
+      container: "#toolbar",
+    },
+  };
 
   const handleUpdloadImage = async () => {
     try {
@@ -146,24 +153,10 @@ export default function CreatePost() {
             className='w-full h-72 object-cover'
           />
         )}
+        <CustomToolbar />
         <ReactQuill
   theme='snow'
-  modules={{
-    toolbar: [
-    [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    ['bold', 'italic', 'underline', 'strike'],
-    ['blockquote', 'code-block'],
-    [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-    [{ 'script': 'sub'}, { 'script': 'super' }],
-    [{ 'indent': '-1'}, { 'indent': '+1' }],
-    [{ 'direction': 'rtl' }],
-    [{ 'color': [] }, { 'background': [] }],
-    [{ 'font': [] }],
-    [{ 'align': [] }],
-    ['link', 'image', 'video'],
-    ['clean']
-  ]
-  }}
+  modules={modules}
   placeholder='Write something...'
   className='h-72 mb-12'
   required
