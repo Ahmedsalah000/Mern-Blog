@@ -13,6 +13,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import CustomToolbar from '../components/CustomToolbar';
 
 export default function UpdatePost() {
   const [file, setFile] = useState(null);
@@ -23,6 +24,11 @@ export default function UpdatePost() {
   const { postId } = useParams();
 
   const navigate = useNavigate();
+  const modules = {
+    toolbar: {
+      container: "#toolbar",
+    },
+  };
     const { token,currentUser } = useSelector((state) => state.user);
 
   useEffect(() => {
@@ -170,8 +176,10 @@ export default function UpdatePost() {
             className='w-full h-72 object-cover'
           />
         )}
+        <CustomToolbar />
         <ReactQuill
           theme='snow'
+          modules={modules}
           value={formData.content}
           placeholder='Write something...'
           className='h-72 mb-12'
@@ -180,7 +188,7 @@ export default function UpdatePost() {
             setFormData({ ...formData, content: value });
           }}
         />
-        <Button type='submit' gradientDuoTone='purpleToPink'>
+        <Button type='submit' gradientDuoTone='greenToBlue'>
           Update post
         </Button>
         {publishError && (
