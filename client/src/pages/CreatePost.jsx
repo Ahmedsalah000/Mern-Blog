@@ -71,7 +71,7 @@ export default function CreatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      
+
       const res = await fetch('https://mern-blog-kld8.vercel.app/api/post/create', {
         method: 'POST',
         headers: {
@@ -156,15 +156,15 @@ export default function CreatePost() {
         )}
         <CustomToolbar />
         <ReactQuill
-  theme='snow'
-  modules={modules}
-  placeholder='Write something...'
-  className='h-72 mb-12'
-  required
-  onChange={(value) => {
-    setFormData({ ...formData, content: value });
-  }}
-/>
+          theme='snow'
+          modules={modules}
+          placeholder='Write something...'
+          className='h-72 mb-12'
+          required
+          onChange={(value) => {
+            setFormData({ ...formData, content: value });
+          }}
+        />
         <Button type='submit' gradientDuoTone='greenToBlue'>
           Publish
         </Button>
