@@ -24,13 +24,12 @@ export default function UpdatePost() {
   const { postId } = useParams();
 
   const navigate = useNavigate();
+  const { token,currentUser } = useSelector((state) => state.user);
   const modules = {
     toolbar: {
       container: "#toolbar",
     },
   };
-    const { token,currentUser } = useSelector((state) => state.user);
-
   useEffect(() => {
     try {
       const fetchPost = async () => {
@@ -92,14 +91,17 @@ export default function UpdatePost() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`https://mern-blog-kld8.vercel.app/api/post/updatepost/${formData._id}/${currentUser._id}`, {
+      const res = await fetch(`https://mern-blog-kld8.vercel.app/api/post/updatepost/${postId}/${currentUser._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
+        
+
       });
+      console.log(formData._id);
       const data = await res.json();
       if (!res.ok) {
         setPublishError(data.message);
