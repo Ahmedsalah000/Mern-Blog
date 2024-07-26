@@ -1,5 +1,7 @@
 import { Alert, Button, FileInput, Select, TextInput } from 'flowbite-react';
 import ReactQuill from 'react-quill';
+import Quill from 'quill';
+import QuillTable from 'quill-table';
 import 'react-quill/dist/quill.snow.css';
 
 import {
@@ -15,7 +17,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CustomToolbar from '../components/CustomToolbar';
-
+Quill.register('modules/table', QuillTable);
 export default function CreatePost() {
   const [file, setFile] = useState(null);
   const [imageUploadProgress, setImageUploadProgress] = useState(null);

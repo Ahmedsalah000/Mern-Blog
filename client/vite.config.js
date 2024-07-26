@@ -10,8 +10,13 @@ export default defineConfig({
         secure:false
       },
     },
-
-
+  },
+  css: {
+    preprocessorOptions: {
+      css: {
+        additionalData: `@import "quill-better-table/dist/quill-better-table.css";`
+      }
+    }
   },
   plugins: [react()],
 })

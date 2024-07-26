@@ -23,7 +23,7 @@ export default function DashboardComp() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/user/getusers?limit=5',{
+        const res = await fetch('https://mern-blog-kld8.vercel.app/api/user/getusers?limit=5',{
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -40,7 +40,7 @@ export default function DashboardComp() {
     };
     const fetchPosts = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/post/getposts?limit=5',{
+        const res = await fetch('https://mern-blog-kld8.vercel.app/api/post/getposts?limit=5',{
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -57,7 +57,7 @@ export default function DashboardComp() {
     };
     const fetchComments = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/comment/getcomments?limit=5',{
+        const res = await fetch('https://mern-blog-kld8.vercel.app/api/comment/getcomments?limit=5',{
           headers: {
             'Authorization': `Bearer ${token}`
           }

@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { FaThumbsUp } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { Button, Textarea } from 'flowbite-react';
-import { set } from 'mongoose';
 
 export default function Comment({ comment, onLike, onEdit, onDelete }) {
   const [user, setUser] = useState({});
@@ -13,7 +12,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/user/${comment.userId}`,{
+        const res = await fetch(`https://mern-blog-kld8.vercel.app/api/user/${comment.userId}`,{
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -36,7 +35,7 @@ export default function Comment({ comment, onLike, onEdit, onDelete }) {
 
   const handleSave = async () => {
     try {
-      const res = await fetch(`http://localhost:3000/api/comment/editComment/${comment._id}`, {
+      const res = await fetch(`https://mern-blog-kld8.vercel.app/api/comment/editComment/${comment._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

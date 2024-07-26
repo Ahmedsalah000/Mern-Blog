@@ -1,0 +1,8 @@
+.ql-table:after { content: "TABLE"; }
+.ql-table-insert-row-above:after { content: "ROW ABOVE"; }
+.ql-table-insert-row-below:after { content: "ROW BELOW"; }
+.ql-table-insert-column-right:after { content: "COL RIGHT"; }
+.ql-table-insert-column-left:after { content: "COL LEFT"; }
+.ql-table-delete-row:after { content: "DEL ROW"; }
+.ql-table-delete-column:after { content: "DEL COL"; }
+.ql-table-delete:after { content: "DEL TABLE"; }

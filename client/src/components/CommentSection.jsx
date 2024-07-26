@@ -19,7 +19,7 @@ export default function CommentSection({ postId }) {
       return;
     }
     try {
-      const res = await fetch('http://localhost:3000/api/comment/create', {
+      const res = await fetch('https://mern-blog-kld8.vercel.app/api/comment/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ export default function CommentSection({ postId }) {
   useEffect(() => {
     const getComments = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/comment/getPostComments/${postId}`,{
+        const res = await fetch(`https://mern-blog-kld8.vercel.app/api/comment/getPostComments/${postId}`,{
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -68,7 +68,7 @@ export default function CommentSection({ postId }) {
         navigate('/sign-in');
         return;
       }
-      const res = await fetch(`http://localhost:3000/api/comment/likeComment/${commentId}`, {
+      const res = await fetch(`https://mern-blog-kld8.vercel.app/api/comment/likeComment/${commentId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -109,7 +109,7 @@ export default function CommentSection({ postId }) {
         navigate('/sign-in');
         return;
       }
-      const res = await fetch(`http://localhost:3000/api/comment/deleteComment/${commentId}`, {
+      const res = await fetch(`https://mern-blog-kld8.vercel.app/api/comment/deleteComment/${commentId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
